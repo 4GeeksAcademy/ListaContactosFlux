@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from "react";
-import getState from "./flux.js";
+//Aquí se define el estado inicial de la aplicación y se establecen las acciones que pueden modificar ese estado. Asegúrate de lo siguiente:
 
-// Don't change, here is where we initialize our context, by default it's just going to be null.
+
+import React, { useState, useEffect } from "react";
+import getState from "./flux.js"; //contiene el estado y las acciones de nuestra aplicación.
+
+// Este es el contexto global que se usará en toda la aplicación, se crea utilizando React.createContext(null)
 export const Context = React.createContext(null);
 
-// This function injects the global store to any view/component where you want to use it, we will inject the context to layout.js, you can see it here:
-// https://github.com/4GeeksAcademy/react-hello-webapp/blob/master/src/js/layout.js#L35
-const injectContext = PassedComponent => {
-	const StoreWrapper = props => {
+/* Esta función inyecta la tienda global en cualquier vista/componente donde quieras usarla, inyectaremos el contexto en layout.js,
+puedes verlo aquí:https://github.com/4GeeksAcademy/react-hello-webapp/blob/master/src/js/layout.js#L35 */
+
+const injectContext = PassedComponent => { //es una función que toma un componente (PassedComponent) y lo envuelve con el contexto global.
+	const StoreWrapper = props => { //StoreWrapper es el componente que realmente maneja el estado global.
 		//this will be passed as the contenxt value
-		const [state, setState] = useState(
-			getState({
+		const [state, setState] = useState( //Se inicializa el estado utilizando useState a getState
+			getState({ //getState para obtener el estado y las acciones iniciales.
 				getStore: () => state.store,
 				getActions: () => state.actions,
 				setStore: updatedStore =>
@@ -21,23 +25,15 @@ const injectContext = PassedComponent => {
 			})
 		);
 
-		useEffect(() => {
-			/**
-			 * EDIT THIS!
-			 * This function is the equivalent to "window.onLoad", it only runs once on the entire application lifetime
-			 * you should do your ajax requests or fetch api requests here. Do not use setState() to save data in the
-			 * store, instead use actions, like this:
-			 *
-			 * state.actions.loadSomeData(); <---- calling this function from the flux.js actions
-			 *
-			 **/
+		useEffect(() => { //LO PRIMERO QUE SE CARGA.  se usa para ejecutar código una vez que el componente se monta y dd se inicializa los datos, llamando a las acciones definidas en flux.js.
+			
+			 state.actions.loadSomeData(); //<---- cargar datos iniciales usando acciones definidas en flux.js. 
+			
 		}, []);
 
-		// The initial value for the context is not null anymore, but the current state of this component,
-		// the context will now have a getStore, getActions and setStore functions available, because they were declared
-		// on the state of this component
-		return (
-			<Context.Provider value={state}>
+		
+		return ( //Context.Provider envuelve el componente pasado (PassedComponent) y le proporciona el estado global (state).
+			<Context.Provider value={state}> 
 				<PassedComponent {...props} />
 			</Context.Provider>
 		);

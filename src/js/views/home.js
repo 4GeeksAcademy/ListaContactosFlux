@@ -13,3 +13,6 @@ export const Home = () => (
 		</a>
 	</div>
 );
+
+/* representa la página de inicio de la aplicación. Se muestra contenido principal, enlaces a otras secciones, o una introducción general. 
+No está relacionado directamente con la creación o gestión de contactos.*/
