@@ -10,7 +10,7 @@ import AñadirContactos from "./views/AñadirContacto.js";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import { enhanceManualRouteObjects } from "react-router/dist/lib/components";
+//import { enhanceManualRouteObjects } from "react-router/dist/lib/components";
 
 //create your first component
 const Layout = () => {
@@ -27,7 +27,7 @@ const Layout = () => {
 						<Route path="/" element={<Home/>}/>
 						<Route path="/contactos" element={<ContactosLista/>}/>
 						<Route path="/anadirContactos" element={<AñadirContactos/>}/>
-						<Route path="/single/:theid" element={<Single/>}/> 
+						/*<Route path="/single/:theid" element={<Single/>}/>
 						<Route path="*" element={<h1>Not found!</h1>}/>
 					</Routes>
 					<Footer />
