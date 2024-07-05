@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
  
-//import { name } from "file-loader";
+
 
 const AñadirContactos = () => {
 	const { actions } = useContext(Context);// Obtiene las acciones (funciones) desde el contexto global
@@ -73,9 +73,7 @@ const AñadirContactos = () => {
 					/>
 				</div>
 				<div className = "botones">
-					<Link to="/contactos">
 						<input type="submit" value={"Añadir Contacto"} className="btn btn-submit"></input>
-					</Link>	
 					<Link to="/contactos">
 						<button type="button" className="btn btn-agenda">Agenda</button>
 					</Link>	

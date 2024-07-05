@@ -26,8 +26,7 @@ const injectContext = PassedComponent => { //es una función que toma un compone
 		);
 
 		useEffect(() => { //LO PRIMERO QUE SE CARGA.  se usa para ejecutar código una vez que el componente se monta y dd se inicializa los datos, llamando a las acciones definidas en flux.js.
-
-			
+			//state.actions.obtenerContactos(); // Llama a obtenerContactos al montar el componente
 		}, []);
 
 		

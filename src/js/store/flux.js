@@ -1,3 +1,4 @@
+
 const getState = ({ getStore, getActions, setStore }) => { //getStore() te permite acceder a este estado y setStore() te permite actualizar este estado.
 
 	return {
@@ -5,8 +6,6 @@ const getState = ({ getStore, getActions, setStore }) => { //getStore() te permi
 		store: { //Se crean las variables
 			contactos: [],  //Añado una variable para almacenar los contactos dentro de un array. Inicialmente vacío, se llenará con datos de la API
 		  },
-
-
 
 		actions: {//AQUI, creamos las funciones
 			crearUsuario: () => {
@@ -56,7 +55,7 @@ const getState = ({ getStore, getActions, setStore }) => { //getStore() te permi
                     .catch(error => console.error("Error: No se ha podido agregar el contacto" + nuevoContacto, error));
             },
 			actualizarContacto: (id, contactoActualizado) => {
-				fetch(`https://playground.4geeks.com/contact/agendas/loisinho/contacts${id}`, {
+				fetch(`https://playground.4geeks.com/contact/agendas/loisinho/contacts/${id}`, {
 					method: "PUT", //method: "PUT" especifica que estamos actualizando datos.
 					body: JSON.stringify(contactoActualizado), //convierte el objeto contacto en una cadena JSON.
 					headers: {
@@ -72,12 +71,18 @@ const getState = ({ getStore, getActions, setStore }) => { //getStore() te permi
 			},
 
 			eliminarContacto: (id) => { // se encarga de enviar una solicitud para eliminar un contacto de la API y, si la solicitud es exitosa, actualizar el estado de la aplicación para reflejar esta eliminación
-				fetch(`https://playground.4geeks.com/contact/agendas/loisinho/contacts${id}`, {
+				fetch(`https://playground.4geeks.com/contact/agendas/loisinho/contacts/${id}`, {
 					method: "DELETE" //method: "DELETE" especifica que estamos eliminando datos a través del ID que tiene nuestro contacto
+				})
+				.then(response => {
+					if (!response.ok) {
+						throw new Error("Error al eliminar el contacto");
+					}
+					return response.json();
 				})
 				.then(data => {
 					console.log(data)
-                    getActions().actualizContactos(); ////aqui llamar a getActions().obtenerContactos() después de agregar, actualizar o eliminar un contacto para mantener la lista de contactos actualizada, no?
+                    getActions().obtenerContactos(); ////aqui llamar a getActions().obtenerContactos() después de agregar, actualizar o eliminar un contacto para mantener la lista de contactos actualizada, no?
                 })
                 .catch(error => console.error("Error: no se ha podido eliminar dicho/os contacto/os", error));
             },

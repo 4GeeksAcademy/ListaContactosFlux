@@ -192,3 +192,7 @@ form {
 .btn-delete:hover {
   background-color: #e60000;
 }
+
+.list-group-item .contact-info {
+  margin-right: 10px; /* Ajusta el espacio entre los elementos (span) */
+}
