@@ -14,25 +14,31 @@ export const ContactosLista = () => { //donde muestro la lista de contactos y pe
 
     const eliminarContacto = id => {
         actions.eliminarContacto(id); // llamo a actions.eliminarContacto(id) para eliminar un contacto específico. (flux.js) 
-        actions.obtenerContactos();// Actualiza la lista de contactos después de eliminar uno
+        actions.obtenerContactos();// Actualiza la lista de contactos después de eliminar uno. 
     }; 
-	return (
+     return (
         <div className="containerLis">
             <h1>Agenda</h1>
             <ul className="list-group">
-                {Array.isArray(store.contactos) && store.contactos.map(contacto => ( // {store.contactos.map(contacto => Muestra cada contacto como un elemento de lista (<li>), con un enlace para ver detalles (Link) y un botón para eliminar (Eliminar contacto).
-                    <li key={contacto.id} className="list-group-item d-flex justify-content-between">
-                        <Link to={`/single/${contacto.id}`} className="contact-link">
-                            <span className="contact-info">{contacto.name}</span>
-                            <span className="contact-info">{contacto.phone}</span>
-                            <span className="contact-info">{contacto.email}</span>
-                            <span className="contact-info">{contacto.address}</span>
-                        </Link>
-                        <button className="btn btn-danger btn-delete" onClick={() => eliminarContacto(contacto.id)}>
-                            Eliminar contacto
-                        </button>
-                    </li>
-                ))}
+                {Array.isArray(store.contactos) &&
+                    store.contactos.map((contacto) => (
+                        <li key={contacto.id} className="list-group-item d-flex justify-content-between">
+                            <Link to={`/single/${contacto.id}`} className="contact-link">
+                                <span className="contact-info">{contacto.name}</span>
+                                <span className="contact-info">{contacto.phone}</span>
+                                <span className="contact-info">{contacto.email}</span>
+                                <span className="contact-info">{contacto.address}</span>
+                            </Link>
+                            <div>
+                                <Link to={`/editarContactos/${contacto.id}`} className="btn btn-edit">
+                                    <i className="bi bi-pencil-square" style={{ color: '#1d4350', marginRight: '5px' }}></i> {/* iconos importados de boostrap */}
+                                </Link>
+                                <button className="btn btn-delete" onClick={() => eliminarContacto(contacto.id)}>
+                                    <i className= "bi bi-person-x-fill" style={{ border: "red", marginRight: '5px' }}></i> {/* iconos importados de boostrap */}
+                                </button>
+                            </div>
+                        </li>
+                    ))}
             </ul>
             <br />
             <div className="button-group d-flex justify-content-between">

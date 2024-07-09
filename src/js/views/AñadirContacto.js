@@ -3,7 +3,7 @@ a través de un formulario. Incluye campos para ingresar información como nombr
 Tiene funcionalidad para enviar estos datos al backend a través de las acciones definidas en flux.js.*/
 
 import React, { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
  
@@ -12,6 +12,7 @@ import { Context } from "../store/appContext";
 const AñadirContactos = () => {
 	const { actions } = useContext(Context);// Obtiene las acciones (funciones) desde el contexto global
 	const [nuevoContacto, setNuevoContacto] = useState({ name: "", phone: "", email: "", address: "" });
+	const navigate = useNavigate(); // Hook para la navegación
 
 	//  Maneja el cambio en los campos del formulario
 	const handleChange = (e) => {
@@ -27,6 +28,7 @@ const AñadirContactos = () => {
 		e.preventDefault(); // Por defecto! Evita el comportamiento predeterminado de envío del formulario
 		actions.agregarContacto(nuevoContacto); // Llama a la acción para agregar un nuevo contacto
 		setNuevoContacto({ name: "", phone: "", email: "", address: "" }); // Limpia el estado después de agregar
+		navigate("/contactos"); // Redirigir a la lista de contactos después de agregar
 	};
  // HTLMyCSS Renderiza el formulario para agregar contacto
 	return (
