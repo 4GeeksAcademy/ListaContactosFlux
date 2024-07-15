@@ -19,64 +19,17 @@ export const ContactosLista = () => { //donde muestro la lista de contactos y pe
     }; 
 
     return (
-        <div className="container">
+      <div className="container">
           <h1 className="my-4">Agenda</h1>
           <div className="row">
-            {Array.isArray(store.contactos) && store.contactos.map(contacto => (
-              <div key={contacto.id} className="col-lg-4 mb-4">
-                <CardContactos name={contacto.name} phone={contacto.phone} email={contacto.email} address={contacto.address} id={contacto.id}/>
-              </div>
-            ))}
+              {Array.isArray(store.contactos) && store.contactos.map(contacto => (
+                  <div key={contacto.id} className="col-lg-4 mb-4">
+                      <CardContactos name={contacto.name} phone={contacto.phone} email={contacto.email} address={contacto.address} id={contacto.id}/>
+                  </div>
+              ))}
           </div>
-          <div className="button-group mt-4">
-            <Link to="/" className="btn btn-primary mr-2">
-              Volver al inicio
-            </Link>
-            <Link to="/anadirContactos" className="btn btn-success">
-              Crear otro contacto
-            </Link>
-          </div>
-        </div>
-      );
-    //  return (
-    //     <div className="containerLis">
-    //         <h1>Agenda</h1>
-    //         <ul className="list-group">
-    //             {Array.isArray(store.contactos) &&
-    //                 store.contactos.map((contacto) => (
-    //                     <li key={contacto.id} className="list-group-item d-flex justify-content-between">
-    //                         <Link to={`/single/${contacto.id}`} className="contact-link">
-    //                             <span className="contact-info">{contacto.name}</span>
-    //                             <span className="contact-info">{contacto.phone}</span>
-    //                             <span className="contact-info">{contacto.email}</span>
-    //                             <span className="contact-info">{contacto.address}</span>
-    //                         </Link>
-    //                         <div>
-    //                             <Link to={`/editarContactos/${contacto.id}`} className="btn btn-edit">
-    //                                 <i className="bi bi-pencil-square" style={{ color: '#1d4350', marginRight: '5px' }}></i> {/* iconos importados de boostrap */}
-    //                             </Link>
-    //                             <button className="btn btn-delete" onClick={() => eliminarContacto(contacto.id)}>
-    //                                 <i className= "bi bi-person-x-fill" style={{ border: "red", marginRight: '5px' }}></i> {/* iconos importados de boostrap */}
-    //                             </button>
-    //                         </div>
-    //                     </li>
-    //                 ))}
-    //         </ul>
-    //         <br />
-    //         <div className="button-group d-flex justify-content-between">
-    //             <div className="ml-auto">
-    //                 <Link to="/">
-    //                     <button className="btn btn-navbar">Volver al inicio</button>
-    //                 </Link>
-    //             </div>
-    //             <div className="ml-auto">
-    //                 <Link to="/anadirContactos">
-    //                     <button className="btn btn-navbar">Crear otro contacto</button>
-    //                 </Link>
-    //             </div>
-    //         </div>
-    //     </div>
-    // );
+      </div>
+  );
 };
 
 
